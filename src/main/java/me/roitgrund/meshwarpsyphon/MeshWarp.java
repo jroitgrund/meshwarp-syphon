@@ -27,7 +27,7 @@ public class MeshWarp {
         Display.create();
         Display.setTitle("meshwarp-syphon");
 
-        // Set up Syphon to read Resolume output.
+        // Set up Syphon to read test server output.
         JSyphonClient client = new JSyphonClient();
         client.init();
         client.setServerName("TestServer");

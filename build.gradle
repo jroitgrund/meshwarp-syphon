@@ -1,0 +1,39 @@
+plugins { id 'java'
+}
+
+group 'me.roitgrund'
+version '0.0.1'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation fileTree(dir: 'lib/jar', include: ['*.jar'])
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+task runClientWithExampleMesh(type: JavaExec) {
+    classpath = sourceSets.main.runtimeClasspath
+    main = "me.roitgrund.meshwarpsyphon.MeshWarp"
+    args 'example-mesh.txt'
+    jvmArgs '-Djava.library.path=./lib/native'
+}
+
+task runClientWithTestMesh(type: JavaExec) {
+    classpath = sourceSets.main.runtimeClasspath
+    main = "me.roitgrund.meshwarpsyphon.MeshWarp"
+    args 'test-mesh.txt'
+    jvmArgs '-Djava.library.path=./lib/native'
+}
+
+task runServer(type: JavaExec) {
+    classpath = sourceSets.main.runtimeClasspath
+    main = "me.roitgrund.meshwarpsyphon.TestServer"
+    jvmArgs '-Djava.library.path=./lib/native'
+}
